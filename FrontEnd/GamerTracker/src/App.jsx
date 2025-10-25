@@ -6,7 +6,7 @@ function App() {
     <>
       <h1>Hola Bienvendo a GamerTracker</h1>
 
-      <a href='index.jsx'><button>Iniciar Experiencia</button></a>
+      <button>Iniciar Experiencia</button>
     </>
   )
 }
