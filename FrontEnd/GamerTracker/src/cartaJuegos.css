@@ -1,0 +1,47 @@
+.card {
+  width: 260px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: transform .2s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.botones {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.editar {
+  background-color: #4ea8de;
+  color: white;
+}
+
+.eliminar {
+  background-color: #e63946;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
