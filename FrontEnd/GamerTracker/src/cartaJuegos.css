@@ -37,12 +37,14 @@
   background-color: #4ea8de;
   color: white;
 }
+.editar:hover {
+  background-color: #70bfff;
+}
 
 .eliminar {
   background-color: #e63946;
   color: white;
 }
-
-.btn:hover {
-  opacity: 0.85;
+.eliminar:hover {
+  background-color: #ff5c6c;
 }
