@@ -6,21 +6,34 @@ function FormJuegos({ onClose, onSubmit, juegoInicial }) {
   const [genero, setGenero] = useState(juegoInicial?.genero || "");
   const [año, setAño] = useState(juegoInicial?.año || "");
 
+  // Nuevos campos
+  const [completado, setCompletado] = useState(juegoInicial?.completado || false);
+  const [horasJugadas, setHorasJugadas] = useState(juegoInicial?.horasJugadas || 0);
+  const [puntuacion, setPuntuacion] = useState(juegoInicial?.puntuacion || 0);
+  const [reseña, setReseña] = useState("");
 
- const enviarFormulario = (evento) => {
-  evento.preventDefault();
-  onSubmit({ nombre, descripcion, genero, año });
-};
+  const enviarFormulario = (evento) => {
+    evento.preventDefault();
 
+    onSubmit({
+      nombre,
+      descripcion,
+      genero,
+      año,
+      completado,
+      horasJugadas,
+      puntuacion,
+      reseñas: reseña ? [{ texto: reseña }] : []
+    });
+  };
 
-    //Estilos con Boostrap
   return (
     <div className="modal-backdrop-custom modal fade show d-block">
       <div className="modal-dialog">
         <div className="modal-content">
 
           <div className="modal-header">
-            <h5 className="modal-title">Agregar Juego</h5>
+            <h5 className="modal-title">{juegoInicial ? "Editar Juego" : "Agregar Juego"}</h5>
             <button type="button" className="btn-close" onClick={onClose}></button>
           </div>
 
@@ -57,6 +70,47 @@ function FormJuegos({ onClose, onSubmit, juegoInicial }) {
                 placeholder="Año"
                 value={año}
                 onChange={e => setAño(e.target.value)}
+              />
+
+              <div className="form-check mb-2">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="checkCompletado"
+                  checked={completado}
+                  onChange={() => setCompletado(!completado)}
+                />
+                <label className="form-check-label" htmlFor="checkCompletado">
+                  ¿Completado?
+                </label>
+              </div>
+
+              <label>Horas jugadas:</label>
+              <input
+                type="number"
+                className="form-control mb-2"
+                value={horasJugadas}
+                onChange={e => setHorasJugadas(e.target.value)}
+              />
+
+              <select
+                className="form-control mb-2"
+                value={puntuacion}
+                onChange={e => setPuntuacion(e.target.value)}
+              >
+                <option value="0">Sin puntuación</option>
+                <option value="1">⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+              </select>
+
+              <textarea
+                className="form-control mb-2"
+                placeholder="Escribe una reseña (opcional)"
+                value={reseña}
+                onChange={e => setReseña(e.target.value)}
               />
 
             </div>

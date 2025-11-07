@@ -18,12 +18,29 @@ mongoose
   .then(() => console.log('Conectado a MongoDB'))
   .catch(error => console.error('Error al conectar MongoDB:', error));
 
-//Esquema y Modelo de Juego
+// Esquema y Modelo de Juego
 const JuegoSchema = new mongoose.Schema({
   nombre: { type: String, required: true },
   descripcion: String,
   genero: String,
-  año: Number
+  año: Number,
+
+  // Marcar como completado
+  completado: { type: Boolean, default: false },
+
+  // Registrar horas jugadas
+  horasJugadas: { type: Number, default: 0 },
+
+  // Puntuación de 0 a 5 estrellas
+  puntuacion: { type: Number, min: 0, max: 5, default: 0 },
+
+  // Reseñas (cada una con texto + fecha automática)
+  reseñas: [
+    {
+      texto: { type: String, required: true },
+      fecha: { type: Date, default: Date.now }
+    }
+  ]
 }, { versionKey: false });
 
 const Juego = mongoose.model('Juego', JuegoSchema);

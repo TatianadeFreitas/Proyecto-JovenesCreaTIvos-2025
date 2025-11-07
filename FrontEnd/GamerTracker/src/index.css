@@ -124,3 +124,17 @@ body {
 .modal-title{
   color: #000;
 }
+
+label{
+  color: #000;
+}
+
+.barra-busqueda {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-left: 20px;
+}

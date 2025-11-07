@@ -3,11 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import CartaJuegos from "./CartaJuegos";
 import BtnAgregar from "./BtnAgregar";
 import FormJuegos from "./FormJuegos.jsx";
+import BarraBusqueada from "./BarraBusqueda.jsx";
+
 
 function IndexPage() {
 
   const navigate = useNavigate();
   const [juegos, setJuegos] = useState([]);
+  const [filtro, setFiltro] = useState(""); 
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [juegoEditando, setJuegoEditando] = useState(null);
 
@@ -59,6 +62,12 @@ const eliminarJuego = async (id) => {
 };
 
 
+// Barra de búsqueda - Filtrado de juegos
+const juegosFiltrados = juegos.filter(juego =>
+  juego.nombre.toLowerCase().includes(filtro.toLowerCase())
+);
+
+
   return (
     <div className="estructura">
       <header>
@@ -67,11 +76,14 @@ const eliminarJuego = async (id) => {
             <li><button className="nav-btn" onClick={() => navigate('/')}>Home</button></li>
             <li><button className="nav-btn" onClick={() => navigate('/contacto')}>Contacto</button></li>
           </ul>
+
+          {/*Barra de búsqueda dentro del nav */}
+          <BarraBusqueada onBuscar={setFiltro} />
         </nav>
       </header>
 
       <section className="cuerpo-juegos">
-        {juegos.map((juego) => (
+        {juegosFiltrados.map((juego) => (
           <CartaJuegos
             key={juego._id}
             juego={juego}
